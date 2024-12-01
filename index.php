@@ -12,7 +12,6 @@ if (!$data) {
 // WhatsApp credentials from config
 $whatsappSenderId = $GLOBALS["whatsapp_sender_id"];
 $whatsappApiKey = $GLOBALS["whatsapp_api_key"];
-$userId = $GLOBALS["whatsapp_user_id"];
 $GLOBALS["from"] = $from = $data['from'] ?? '';
 $GLOBALS["message"] = $message = trim($data['message'] ?? '');
 $bufferImage = $data['bufferImage'] ?? null;
