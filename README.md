@@ -54,14 +54,8 @@ Edit the `config.php` file:
   ```
 
 ### 3. Set Up Database
-- Create the necessary tables in your MySQL database:
+- Create the necessary table(s) in your MySQL database:
 ```sql
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    api_key VARCHAR(255),
-    name VARCHAR(255)
-);
-
 CREATE TABLE model_chats (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sender_id VARCHAR(50),
@@ -70,15 +64,8 @@ CREATE TABLE model_chats (
     message TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE contacts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    name VARCHAR(255),
-    number VARCHAR(20)
-);
 ```
-- OR import 'data/tables.sql' in your database
+- OR import 'data/model_chats.sql' in your database
 
 ### 4. Update the existing Code
 - Change method "parseIncomingMessage" in "server/lib/helper.js" as below 
