@@ -82,59 +82,59 @@ CREATE TABLE contacts (
 
 ### 4. Update the existing Code
 - Change method "parseIncomingMessage" in "server/lib/helper.js" as below 
-```
-	async function parseIncomingMessage(msg) {
-		const type = Object.keys(msg.message || {})[0];
-		const body =
-			type === "conversation" && msg.message.conversation
-				? msg.message.conversation
-				: type == "imageMessage" && msg.message.imageMessage.caption
-				? msg.message.imageMessage.caption
-				: type == "videoMessage" && msg.message.videoMessage.caption
-				? msg.message.videoMessage.caption
-				: type == "extendedTextMessage" &&
-				  msg.message.extendedTextMessage.text
-				? msg.message.extendedTextMessage.text
-				: type == "messageContextInfo" &&
-				  msg.message.listResponseMessage?.title
-				? msg.message.listResponseMessage.title
-				: type == "messageContextInfo"
-				? msg.message.buttonsResponseMessage.selectedDisplayText
-				: "";
-		const d = body.toLowerCase();
-		const command = await removeForbiddenCharacters(d);
-		const senderName = msg?.pushName || "";
-		const from = msg.key.remoteJid.split("@")[0];
-		let bufferImage;
-		console.log(type);
-		if (type === "imageMessage") {
-			const stream = await downloadContentFromMessage(
-				msg.message.imageMessage,
-				"image"
-			);
-			let buffer = Buffer.from([]);
-			for await (const chunk of stream) {
-				buffer = Buffer.concat([buffer, chunk]);
-			}
-			bufferImage = buffer.toString("base64");
+```Javascript
+async function parseIncomingMessage(msg) {
+	const type = Object.keys(msg.message || {})[0];
+	const body =
+		type === "conversation" && msg.message.conversation
+			? msg.message.conversation
+			: type == "imageMessage" && msg.message.imageMessage.caption
+			? msg.message.imageMessage.caption
+			: type == "videoMessage" && msg.message.videoMessage.caption
+			? msg.message.videoMessage.caption
+			: type == "extendedTextMessage" &&
+			  msg.message.extendedTextMessage.text
+			? msg.message.extendedTextMessage.text
+			: type == "messageContextInfo" &&
+			  msg.message.listResponseMessage?.title
+			? msg.message.listResponseMessage.title
+			: type == "messageContextInfo"
+			? msg.message.buttonsResponseMessage.selectedDisplayText
+			: "";
+	const d = body.toLowerCase();
+	const command = await removeForbiddenCharacters(d);
+	const senderName = msg?.pushName || "";
+	const from = msg.key.remoteJid.split("@")[0];
+	let bufferImage;
+	console.log(type);
+	if (type === "imageMessage") {
+		const stream = await downloadContentFromMessage(
+			msg.message.imageMessage,
+			"image"
+		);
+		let buffer = Buffer.from([]);
+		for await (const chunk of stream) {
+			buffer = Buffer.concat([buffer, chunk]);
 		}
-		else if(type === "audioMessage"){
-			const stream = await downloadContentFromMessage(
-				msg.message.audioMessage,
-				"audio"
-			);
-			let buffer = Buffer.from([]);
-			for await (const chunk of stream) {
-				buffer = Buffer.concat([buffer, chunk]);
-			}
-			bufferImage = "AUDIO:" + buffer.toString("base64");
-		}
-		else {
-			urlImage = null;
-		}
-
-		return {  command, bufferImage, from };
+		bufferImage = buffer.toString("base64");
 	}
+	else if(type === "audioMessage"){
+		const stream = await downloadContentFromMessage(
+			msg.message.audioMessage,
+			"audio"
+		);
+		let buffer = Buffer.from([]);
+		for await (const chunk of stream) {
+			buffer = Buffer.concat([buffer, chunk]);
+		}
+		bufferImage = "AUDIO:" + buffer.toString("base64");
+	}
+	else {
+		urlImage = null;
+	}
+
+	return {  command, bufferImage, from };
+}
 ```
 - Or Replace "data/helpers.js" in repository with "server/lib/helper/helpers.js" in your Application.
 
