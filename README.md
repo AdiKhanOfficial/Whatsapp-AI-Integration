@@ -213,3 +213,4 @@ For further queries or assistance, contact:
 **Adil Khan**  
 - [Website](https://adikhanofficial.com)  
 - [GitHub](https://github.com/AdiKhanOfficial)  
+- [WhatsApp](https://wa.me/+923065305216)  
