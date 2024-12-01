@@ -138,9 +138,17 @@ async function parseIncomingMessage(msg) {
 ```
 - Or Replace "data/helpers.js" in repository with "server/lib/helper/helpers.js" in your Application.
 
-### 5. Deploy the Application
+### 5. Define Bot's Role
+- Define AI Assistant's role in "bot_role.txt"
+  
+### 6. Deploy the Application
 - Place the project files on a PHP-enabled server.
 - Ensure `index.php` is accessible to receive Webhook calls from the WhatsApp gateway.
+- It is recomended to place inside the "pubic/whatsapp_ai_assistant/" directory of your Application.
+- Setup Webhook for for WhatsApp Account.
+  ```
+  https://yourserver.com/whatsapp_ai_assistant/
+  ```
 
 ---
 
