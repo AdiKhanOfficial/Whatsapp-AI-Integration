@@ -16,7 +16,7 @@ $GLOBALS["whatsapp_endpoint"] = "https://YOUR_DOMAIN.COM/send-message"; // Put y
 
 //Hugging Facae Configuration
 $GLOBALS["hugging_face_api_key"] = "HUGGING_FACE_API_KEY"; // Api key with read permission
-$GLOBALS["hugging_face_end_point"] = "https://api-inference.huggingface.co/models/openai/whisper-large-v3";
+$GLOBALS["hugging_face_end_point"] = "https://api-inference.huggingface.co/models/openai/whisper-large-v3-turbo";
 
 //Gemini Configuration
 $GLOBALS["gemini_api_key"] = $gemini_api_key = "GEMINI_API_KEY";
